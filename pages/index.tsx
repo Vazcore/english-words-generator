@@ -14,9 +14,9 @@ const Home: NextPage = () => {
   const [showTextArea, setShowTextArea] = useState(true);
   const title = "English Words Generator";
 
-  const getRandomValue = (min: number, max: number) => {
+  const getRandomValue = useCallback((min: number, max: number) => {
     return Math.floor(Math.random() * (max - min) + min);
-  };
+  }, []);
 
   const onGenerate = useCallback(() => {
     const words = text.replaceAll("\n", "").split(" ")
