@@ -11,6 +11,7 @@ const Home: NextPage = () => {
   const [numberOfWords, setNumberOfWords] = useState(1);
   const [text, setText] = useState("");
   const [result, setResult] = useState("");
+  const [showTextArea, setShowTextArea] = useState(true);
   const title = "English Words Generator";
 
   const getRandomValue = (min: number, max: number) => {
@@ -38,9 +39,15 @@ const Home: NextPage = () => {
           {title}
         </h1>
 
-        <textarea className={styles.textarea} onChange={event => setText(event.target.value)}></textarea>
+        {showTextArea && <textarea className={styles.textarea} onChange={event => setText(event.target.value)}></textarea>}
 
-        <Stack spacing={2} direction="row">
+        <Stack spacing={2} direction="row" className={styles.buttonPanel}>
+          <Button
+            onClick={() => setShowTextArea(!showTextArea)}
+            color="secondary"
+            variant="contained">
+              {showTextArea ? "Hide " : "Show "} Text Area
+          </Button>
           <Select
             labelId="demo-simple-select-standard-label"
             id="demo-simple-select-standard"
